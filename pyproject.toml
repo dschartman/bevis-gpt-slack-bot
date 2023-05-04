@@ -9,6 +9,7 @@ packages = [{include = "bevis_gpt_slack_bot"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 slack-bolt = "^1.18.0"
+python-dotenv = "^1.0.0"
 
 
 [tool.poetry.group.test.dependencies]

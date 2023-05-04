@@ -1,16 +1,27 @@
-# This is a sample Python script.
+import os
+from slack_bolt import App
+from slack_bolt.adapter.socket_mode import SocketModeHandler
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+from config import *
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+app = App(
+    token=SLACK_BOT_TOKEN,
+    signing_secret=SLACK_SIGNING_SECRET
+)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+@app.event("message")
+def message_handler(body, say):
+    text = body["event"].get("text")
+    user_id = body["event"].get("user")
+    bot_id = app.client.auth_test(token=SLACK_BOT_TOKEN)["user_id"]
+
+    if user_id != bot_id and text:
+        print(text)
+
+
+# Start your app
+if __name__ == "__main__":
+    handler = SocketModeHandler(app, SLACK_APP_TOKEN)
+    handler.start()
