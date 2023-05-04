@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "bevis-gpt-slack-bot"
+version = "0.1.0"
+description = ""
+authors = ["don.schartman <schartmand@gmail.com>"]
+readme = "README.md"
+packages = [{include = "bevis_gpt_slack_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+slack-bolt = "^1.18.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
